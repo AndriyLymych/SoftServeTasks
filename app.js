@@ -53,21 +53,23 @@ console.log(sqrtEven(arr));
 // a2 + b2 = c2 (a ≤ b ≤ c ≤ n).
 
 
-let squares, result, optimizedResult, status;
-let numbers = [];
-
 function pythagoras(number) {
-    squares = [];
-    result = [];
-    optimizedResult = [];
+    const numbers = [];
+    const squares = [];
+    const result = [];
+    const optimizedResult = [];
+    let status;
+
     for (let l = 0; l <= number; l++) {
         numbers[l] = l
     }
+
     numbers.shift();
 
-    numbers.map((number) => {
-        squares.push(Math.pow(number, 2))
-    });
+    for (let n = 0; n < numbers.length; n++) {
+        squares.push(Math.pow(numbers[n], 2))
+
+    }
 
     for (let i = 0; i < numbers.length; i++) {
         for (let j = 0; j < numbers.length; j++) {
@@ -75,16 +77,19 @@ function pythagoras(number) {
                 result.push([numbers[i], numbers[j], Math.sqrt(squares.find((el) => el === Math.pow(numbers[i], 2) + Math.pow(numbers[j], 2)))])
         }
     }
+    for (let k = 0; k < result.length; k++) {
 
-    for (let k = 0; k < result.length; k += 1) {
         status = false;
+
         for (let p = 0; p < optimizedResult.length; p++) {
             if (JSON.stringify(optimizedResult[p]) === JSON.stringify(result[k].sort((a, b) => a - b)))
                 status = true
         }
+
         if (!status)
             optimizedResult.push(result[k].sort((a, b) => a - b))
     }
+
     return optimizedResult
 }
 
