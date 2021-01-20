@@ -1,30 +1,26 @@
 //178.	Даны натуральные числа n, a1, ... , an. Определить количество членов
 // ak последовательности a1, ... , an:
 
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
 //  б) кратных 3 и не кратных 5;
 
 
 function aliquot(arr) {
 
-    const numberObj = {};
-    const aliquotThree = [];
-    const aliquotFive = [];
+    const aliquotOrNotAliquotNum = [];
+    const aliquotOrNotAliquotNumCount = {};
 
     arr.forEach(value => {
-        if (value % 3 === 0) {
-            aliquotThree.push(value)
+        if (value % 3 === 0 && value % 5 !== 0) {
+            aliquotOrNotAliquotNum.push(value)
         }
-        if (value % 5 !== 0) {
-            aliquotFive.push(value)
-        }
+
     });
 
-    numberObj.aliquotThree = aliquotThree.length;
-    numberObj.aliquotFive = aliquotFive.length;
+     aliquotOrNotAliquotNumCount.count = aliquotOrNotAliquotNum.length;
 
-    return numberObj
+    return aliquotOrNotAliquotNumCount
 }
 
 console.log(aliquot(arr));
@@ -35,6 +31,7 @@ console.log(aliquot(arr));
 function sqrtEven(arr) {
     const sqrtEvenCount = {};
     const sqrtArr = [];
+
     arr.forEach(value => {
         if (Math.sqrt(value) % 2 === 0) {
             sqrtArr.push(value)
