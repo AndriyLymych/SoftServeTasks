@@ -52,14 +52,18 @@ console.log(sqrtEven(arr));
 // т. е. все такие тройки натуральных чисел a,	b,	c, что
 // a2 + b2 = c2 (a ≤ b ≤ c ≤ n).
 
-let squares;
-let result;
-let optimizedResult;
 
-function pythagoras(numbers) {
+let squares, result, optimizedResult, status;
+let numbers = [];
+
+function pythagoras(number) {
     squares = [];
     result = [];
     optimizedResult = [];
+    for (let l = 0; l <= number; l++) {
+        numbers[l] = l
+    }
+    numbers.shift();
 
     numbers.map((number) => {
         squares.push(Math.pow(number, 2))
@@ -72,11 +76,16 @@ function pythagoras(numbers) {
         }
     }
 
-    for (let k = 0; k < result.length; k += 2) {
-        optimizedResult.push(result[k].sort((a, b) => a - b))
+    for (let k = 0; k < result.length; k += 1) {
+        status = false;
+        for (let p = 0; p < optimizedResult.length; p++) {
+            if (JSON.stringify(optimizedResult[p]) === JSON.stringify(result[k].sort((a, b) => a - b)))
+                status = true
+        }
+        if (!status)
+            optimizedResult.push(result[k].sort((a, b) => a - b))
     }
-
     return optimizedResult
 }
 
-console.log(pythagoras(arr));
+console.log(pythagoras(100));
