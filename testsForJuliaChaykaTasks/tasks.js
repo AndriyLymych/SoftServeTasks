@@ -4,7 +4,7 @@ const quantity = n => {
     return n.toString().split('').length
 };
 
-console.log(quantity(1000000));
+// console.log(quantity(-10));
 
 // Чому рівна сума чисел n
 
@@ -15,7 +15,7 @@ const sum = n => {
         .reduce((acc, num) => acc + +num, 0)
 };
 
-console.log(sum(12345));
+// console.log(sum(12345));
 
 //Знайти всі ідеальні числа менші заданого. Наприклад, 6 - ідеальне число, бо 6 = 1+2+3 (які є його дільниками)
 
@@ -30,10 +30,10 @@ const isPerfect = num => {
 
 };
 
-console.log(isPerfect(6));
+// console.log(isPerfect(1234));
 
 module.exports = {
-    quantity,
+    isPerfect,
     sum,
-    isPerfect
+    quantity
 };

@@ -1,10 +1,11 @@
+const {quantity,sum,isPerfect} =require('./testsForJuliaChaykaTasks/tasks');
+
 //178.	Даны натуральные числа n, a1, ... , an. Определить количество членов
 // ak последовательности a1, ... , an:
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
 //  б) кратных 3 и не кратных 5;
-
 
 function aliquot(arr) {
 
@@ -15,16 +16,14 @@ function aliquot(arr) {
         if (value % 3 === 0 && value % 5 !== 0) {
             aliquotOrNotAliquotNum.push(value)
         }
-
     });
 
-     aliquotOrNotAliquotNumCount.count = aliquotOrNotAliquotNum.length;
+    aliquotOrNotAliquotNumCount.count = aliquotOrNotAliquotNum.length;
 
     return aliquotOrNotAliquotNumCount
 }
 
 console.log(aliquot(arr));
-
 
 // в) являющихся квадратами четных чисел;
 
@@ -49,7 +48,6 @@ console.log(sqrtEven(arr));
 // т. е. все такие тройки натуральных чисел a,	b,	c, что
 // a2 + b2 = c2 (a ≤ b ≤ c ≤ n).
 
-
 function pythagoras(number) {
     const numbers = [];
     const squares = [];
@@ -71,7 +69,9 @@ function pythagoras(number) {
     for (let i = 0; i < numbers.length; i++) {
         for (let j = 0; j < numbers.length; j++) {
             if (squares.includes(Math.pow(numbers[i], 2) + Math.pow(numbers[j], 2)))
-                result.push([numbers[i], numbers[j], Math.sqrt(squares.find((el) => el === Math.pow(numbers[i], 2) + Math.pow(numbers[j], 2)))])
+                result.push([numbers[i], numbers[j],
+                    Math.sqrt(Math.pow(numbers[i],2)+Math.pow(numbers[j],2))
+                ])
         }
     }
     for (let k = 0; k < result.length; k++) {
@@ -79,12 +79,15 @@ function pythagoras(number) {
         status = false;
 
         for (let p = 0; p < optimizedResult.length; p++) {
-            if (JSON.stringify(optimizedResult[p]) === JSON.stringify(result[k].sort((a, b) => a - b)))
+            if (JSON.stringify(optimizedResult[p]) === JSON.stringify(result[k].sort((a, b) => a - b))){
                 status = true
+            }
         }
 
-        if (!status)
+        if (!status){
             optimizedResult.push(result[k].sort((a, b) => a - b))
+
+        }
     }
 
     return optimizedResult
